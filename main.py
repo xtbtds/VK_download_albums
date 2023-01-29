@@ -26,6 +26,7 @@ def download(url, save_path):
 
 
 def main():
+    token=input("Enter your token: ")
     owner=input("Enter owner id: ")
     r_alb = requests.get(f"https://api.vk.com/method/photos.getAlbums", params={
                                                                         'owner_id': owner,
