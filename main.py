@@ -54,8 +54,8 @@ def main():
 
     # Downloading photos
     for i in range(batches):
-        last = (i+1)*50 if photos_count >= (i+1)*50 else i*50+1 + photos_count % 50
-        print(f"Downloading photos {i*50+1} - {last-1}...", )
+        last = (i+1)*50 if photos_count >= (i+1)*50 else i*50 + photos_count % 50
+        print(f"Downloading photos {i*50+1} - {last}...", )
         r = requests.get(f"https://api.vk.com/method/photos.get", params={
                                                                             'owner_id': owner, 
                                                                             'album_id':id,
