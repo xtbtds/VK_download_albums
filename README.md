@@ -2,7 +2,7 @@
 
 1. Create a standalone-application here: https://vk.com/apps?act=manage. Copy your App ID
 <p float="left">
-  <img src="img/image(1).jpg" width="150" />
+  <img src="imgs/vk1.jpg" width="150" />
 </p>
 
 
