@@ -11,3 +11,5 @@
 3. Copy the string between `access_token=` and `&expires_in=`.
 
 4. Run `main.py`
+
+5. Note that your token expires in 24 h. After that, you'll have co create a new one using the link from step 2).
