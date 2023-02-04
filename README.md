@@ -1,4 +1,4 @@
-# download-vk-albums
+# Download photo albums from VK.
 
 1. Create a standalone-application here: https://vk.com/apps?act=manage. Copy your App ID:
 <p float="left">
