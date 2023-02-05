@@ -5,8 +5,6 @@ from multiprocessing import Pool
 import functools
 from utils import create_folder, download, get_photos, available_albums
 
-#https://oauth.vk.com/authorize?client_id=51526963&redirect_uri=https://oauth.vk.com/blank.html&callback&scope=30&display=mobile&response_type=token&v=5.89
-
 def main():
     token=input("Enter your token: ")
     owner=input("Enter owner id: ")
