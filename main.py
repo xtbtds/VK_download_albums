@@ -24,15 +24,15 @@ def main():
                                                                         'v': 5.89
                                                                     })
     profile_info = profile_info_response.json()                                                             
-    first_name = profile_info['response']['first_name']
-    last_name = profile_info['response']['last_name']
+    first_name = profile_info['response'][0]['first_name']
+    last_name = profile_info['response'][0]['last_name']
     save_path = create_folder((first_name, last_name, album_name))
 
     # Downloading photos
-    photos_urls = get_photos(photos_count, owner, selected_album_id, token)
+    photos_urls_and_dates = get_photos(photos_count, owner, selected_album_id, token)
     print("Download started.")
     p = Pool()
-    p.map(functools.partial(download, save_path=save_path), photos_urls)
+    p.map(functools.partial(download, save_path=save_path), photos_urls_and_dates)
     p.close()
     p.join()
     print(f"{photos_count} photos were downloaded.")
