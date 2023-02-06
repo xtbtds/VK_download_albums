@@ -1,6 +1,7 @@
 import requests, json
 import random
 import os.path
+import os
 
 def write_json(data, filename):
     with open (filename, 'w') as file:
@@ -19,21 +20,21 @@ def create_folder(profile_data):
     print("Directory {} is created.".format(folder_name))
     return folder_name
 
-def download(url, save_path):
-    r = requests.get(url, stream=True)
+def download(url_date_dict, save_path):
+    r = requests.get(url_date_dict['url'], stream=True)
     try:
-        filename = str(round(random.random(),6))+url.split('/')[-1].split('?')[0]
+        filename = str(round(random.randint(10,99),3)) + url_date_dict['url'].split('/')[-1].split('?')[0] 
     except:
-        print("Can't split filename ", url)
+        print("Can't split filename ", url_date_dict['url'])
     completeName = os.path.join(save_path, filename)  
     with open(completeName, 'bw') as file:
         for chunk in r.iter_content(4096):
             file.write(chunk)
+    os.utime(completeName, (url_date_dict['date'], url_date_dict['date']))
 
-# returns a list of urls to photos with max sizes            
 def get_photos(photos_count, owner_id, album_id, token):
     batches = int(photos_count / 50) + (photos_count % 50 > 0)
-    all_photos=[]
+    all_photos_and_dates = []
     for i in range(batches):
         last = (i+1)*50 if photos_count >= (i+1)*50 else i*50 + photos_count % 50
         print(f"Receiving photos {i*50+1} - {last}...", )
@@ -49,11 +50,12 @@ def get_photos(photos_count, owner_id, album_id, token):
         photos = photos['response']['items']
         for photo in photos:
             sizes = photo['sizes']
+            date = photo['date']
             max_size_url = max(sizes, key=get_largest)['url']
-            all_photos.append(max_size_url)
-    return all_photos
+            all_photos_and_dates.append({"url": max_size_url, "date": date})
+    return all_photos_and_dates
 
-# prints albums available to download 
+
 def available_albums(owner, token):
     albums_response = requests.get(f"https://api.vk.com/method/photos.getAlbums", params={
                                                                         'owner_id': owner,
