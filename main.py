@@ -18,8 +18,8 @@ def main():
     print(f"{photos_count} photos will be downloaded.")
 
     # create folder to store photos
-    profile_info_response = requests.get(f"https://api.vk.com/method/account.getProfileInfo", params={
-                                                                        'owner_id': owner,
+    profile_info_response = requests.get(f"https://api.vk.com/method/users.get", params={
+                                                                        'user_ids': owner,
                                                                         'access_token': token,
                                                                         'v': 5.89
                                                                     })
