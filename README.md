@@ -30,3 +30,11 @@
 4. Run `main.py`
 
 5. Note that your token expires in 24 h. After that, you'll have to create a new one using the link from step 2.
+
+
+
+
+
+To fix:  
+1. album names with '?<>~!{}' etc.  
+2. photos older than 2011 aren't downloaded with max size
