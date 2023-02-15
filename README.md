@@ -38,3 +38,4 @@
 To fix:  
 1. album names with '?<>~!{}' etc.  
 2. photos older than 2011 aren't downloaded with max size
+3. aiohttp instead of requests; try to get links and download photos at the same time
